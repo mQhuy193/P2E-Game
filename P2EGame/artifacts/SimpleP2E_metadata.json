@@ -1,0 +1,248 @@
+{
+	"compiler": {
+		"version": "0.8.10+commit.fc410830"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_stableTokenAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "funder",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Funded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "player",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "guess",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "winningNumber",
+						"type": "uint256"
+					}
+				],
+				"name": "GameLost",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "player",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "guess",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "winningNumber",
+						"type": "uint256"
+					}
+				],
+				"name": "GameWon",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "REWARD_AMOUNT",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "fundContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPrizePoolBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_guess",
+						"type": "uint256"
+					}
+				],
+				"name": "play",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "prizePool",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "stableToken",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdrawFunds",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Một game P2E đơn giản trên Celo. Người chơi đoán một số từ 1 đến 10. Nếu đoán đúng, họ thắng 1 USDC. Chủ sở hữu contract (owner) cần nạp USDC vào contract để làm quỹ thưởng.",
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"details": "Hàm khởi tạo (Constructor)",
+					"params": {
+						"_stableTokenAddress": "Địa chỉ của token USDC trên mạng Celo Sepolia"
+					}
+				},
+				"fundContract(uint256)": {
+					"details": "Hàm nạp tiền vào quỹ thưởng (chỉ chủ sở hữu). QUAN TRỌNG: Chủ sở hữu phải `approve` contract này trước khi gọi hàm."
+				},
+				"getPrizePoolBalance()": {
+					"details": "Lấy số dư quỹ thưởng hiện tại."
+				},
+				"play(uint256)": {
+					"details": "Hàm chính của game.",
+					"params": {
+						"_guess": "Số người chơi đoán (từ 1 đến 10)."
+					}
+				},
+				"withdrawFunds()": {
+					"details": "Chủ sở hữu rút USDC còn lại (nếu cần)."
+				}
+			},
+			"title": "SimpleP2E",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/SimpleP2E.sol": "SimpleP2E"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/SimpleP2E.sol": {
+			"keccak256": "0xe71e95be9b8e91e8b6df56d24f797f061f19bfa0b06a481e7760461733272056",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://97960e508d761da3909ca54f41a5202d6f51df6a08618bc5e2754830758be897",
+				"dweb:/ipfs/QmXsXUMLHXEx1c3EiFUpVhphbV69dYnthEXpYnFnHZNy5F"
+			]
+		}
+	},
+	"version": 1
+}
