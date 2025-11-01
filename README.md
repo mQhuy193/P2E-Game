@@ -1,151 +1,129 @@
-Game P2E "Đoán Số" trên Celo (Celo Guessing Game P2E)
+# 🎮 Celo Guessing Game P2E — Trò chơi "Đoán Số" trên Celo
 
-Một dự án Hợp đồng Thông minh (Smart Contract) đơn giản được xây dựng trên Celo Sepolia Testnet, minh họa cơ chế Play-to-Earn (P2E) cơ bản bằng cách sử dụng stablecoin (USDC).
+Một dự án **Smart Contract (Hợp đồng thông minh)** đơn giản triển khai trên **Celo Sepolia Testnet**, minh họa cơ chế **Play-to-Earn (P2E)** cơ bản bằng cách sử dụng **USDC stablecoin** làm phần thưởng.
 
-Dự án này được tạo ra chủ yếu cho mục đích giáo dục, giúp người mới bắt đầu hiểu các khái niệm cơ bản của Web3 như:
+> 🧩 Mục đích chính của dự án là giáo dục, giúp người mới bắt đầu làm quen với các khái niệm cơ bản trong Web3:
+> - Kết nối ví (MetaMask)
+> - Deploy hợp đồng thông minh (qua Remix)
+> - Tương tác với dApp (gọi hàm, ký giao dịch)
+> - Tiện ích của Stablecoin (USDC) trên Celo
 
-Kết nối ví (MetaMask)
+---
 
-Deploy hợp đồng thông minh (qua Remix)
+## ⚙️ Công nghệ sử dụng
 
-Tương tác với dApp (gọi hàm, ký giao dịch)
+| Công nghệ | Mô tả |
+|------------|--------|
+| **Solidity** | Ngôn ngữ lập trình hợp đồng thông minh |
+| **Celo Sepolia Testnet** | Blockchain tương thích EVM, tối ưu cho thiết bị di động |
+| **USDC (Bridged)** | Stablecoin được sử dụng làm phần thưởng |
+| **Remix IDE** | Môi trường phát triển tích hợp chạy trên trình duyệt |
+| **MetaMask** | Ví Web3 để tương tác với blockchain |
 
-Tiện ích của Stablecoin (USDC) trên Celo
+---
 
-1. Công nghệ sử dụng
+## 🕹️ Cách thức hoạt động
 
-Solidity: Ngôn ngữ lập trình Hợp đồng Thông minh.
+Đây là một **trò chơi đoán số đơn giản**:
 
-Celo (Sepolia Testnet): Nền tảng blockchain tương thích EVM, ưu tiên thiết bị di động.
+- 👑 **Chủ sở hữu (Owner)**: Deploy contract và nạp quỹ thưởng (USDC).  
+- 🙋‍♂️ **Người chơi (Player)**: Đoán một con số (1–10) và tham gia trò chơi.
 
-USDC (Bridged): Stablecoin được sử dụng làm phần thưởng.
+**Kết quả:**
+- Nếu đoán đúng 🎯 → Nhận **1 USDC** phần thưởng.  
+- Nếu đoán sai ❌ → Không mất gì (ngoài phí gas).
 
-Remix IDE: Môi trường phát triển tích hợp (IDE) dựa trên trình duyệt.
+> ⚠️ *Lưu ý:* Hàm sinh ngẫu nhiên sử dụng `block.timestamp` chỉ mang tính demo, **không an toàn cho môi trường thực tế**.
 
-MetaMask: Ví Web3 để tương tác với blockchain.
+---
 
-2. Cách thức hoạt động
+## 🚀 Hướng dẫn Deploy & Chơi (qua Remix IDE)
 
-Đây là một trò chơi đoán số đơn giản:
+### 🔧 Yêu cầu
 
-Chủ sở hữu (Owner): Deploy contract và nạp quỹ thưởng (USDC) vào đó.
+- Trình duyệt có cài **MetaMask**
+- Một ít **CELO (Sepolia)** để trả phí gas
+- Một ít **USDC (Sepolia)** để nạp quỹ thưởng
 
-Người chơi (Player): Trả một khoản phí nhỏ (hiện đang là 0) để đoán một con số (từ 1 đến 10).
+---
 
-Kết quả:
+### 🪜 Bước 1. Cấu hình MetaMask cho mạng Celo Sepolia
 
-Nếu người chơi đoán đúng con số bí mật (được tạo ngẫu nhiên một cách đơn giản), họ sẽ thắng và nhận được 1 USDC từ quỹ thưởng.
+Vào **MetaMask → Settings → Networks → Add a network**  
+Nhập thông tin:
 
-Nếu người chơi đoán sai, họ không mất gì (ngoài phí gas).
+| Trường | Giá trị |
+|---------|----------|
+| Network Name | Celo Sepolia |
+| New RPC URL | `https://sepolia-forno.celo-testnet.org` |
+| Chain ID | `11142220` |
+| Currency Symbol | CELO |
+| Block Explorer URL | [https://sepolia-blockscout.celo-testnet.org](https://sepolia-blockscout.celo-testnet.org) |
 
-Lưu ý: Cơ chế ngẫu nhiên trong contract này (block.timestamp) không an toàn cho sản xuất thực tế và chỉ dùng cho mục đích demo.
+---
 
-3. Hướng dẫn Deploy và Chơi (Sử dụng Remix)
+### 🪜 Bước 2. Lấy Token Testnet (Faucet)
 
-Yêu cầu
+1. Truy cập **[https://faucet.celo.org/sepolia](https://faucet.celo.org/sepolia)**
+2. Dán địa chỉ ví MetaMask của bạn để nhận CELO (gas) & USDC (chơi).
+3. Thêm USDC token vào MetaMask:
+   
+---
 
-Trình duyệt có cài đặt ví MetaMask.
+### 🪜 Bước 3. Compile & Deploy Contract
 
-Một ít token CELO (Sepolia) để trả phí gas.
+1. Mở [Remix IDE](https://remix.ethereum.org)
+2. Tạo file `SimpleP2E.sol` và dán code vào.
+3. **Compile:**
+- Chọn compiler ≥ `0.8.10`
+- Nhấn **Compile SimpleP2E.sol**
+4. **Deploy:**
+- `ENVIRONMENT`: Chọn **Injected Provider - MetaMask**
+- `ACCOUNT`: Đảm bảo ví bạn đang trên mạng **11142220**
+- `CONTRACT`: Chọn **SimpleP2E**
+- Trong ô **Deploy**, nhập địa chỉ USDC:
+  ```
+  0x00Be9f205322F4359076C1E9A5B532E746F60216
+  ```
+- Nhấn **Deploy** và xác nhận trên MetaMask.
 
-Một ít token USDC (Sepolia) để nạp quỹ thưởng.
+---
 
-Bước 1: Cấu hình MetaMask cho Celo Sepolia
+### 🪜 Bước 4. Nạp quỹ thưởng (Fund Contract)
 
-Nếu bạn chưa thêm mạng, hãy vào MetaMask > Settings > Networks > Add a network và nhập:
+#### 1️⃣ Approve USDC
+- Trong Remix, tìm contract **IERC20** (có sẵn trong `SimpleP2E.sol`)
+- Click **At Address** → nhập `0x00Be9f205322F4359076C1E9A5B532E746F60216`
+- Gọi hàm `approve(spender, amount)`:
+- Nhấn **transact** và xác nhận trên MetaMask.
 
-Network Name: Celo Sepolia
+#### 2️⃣ Fund contract
+- Mở contract `SimpleP2E`
+- Gọi hàm `fundContract(_amount)`:
+- Nhấn **transact** để gửi tiền thưởng vào game.
 
-New RPC URL: https://sepolia-forno.celo-testnet.org
+---
 
-Chain ID: 11142220
+### 🪜 Bước 5. Chơi Game 🎲
 
-Currency Symbol: CELO
+1. Trong phần contract `SimpleP2E`, tìm hàm **play** (màu cam)
+2. Nhập số bạn đoán (1–10) vào ô `_guess`
+3. Nhấn **transact** và xác nhận trên MetaMask
+4. Kiểm tra số dư USDC của bạn:
+ - Nếu đoán đúng → Nhận 1 USDC
+ - Nếu sai → Không bị mất gì
 
-Block Explorer URL: https://sepolia-blockscout.celo-testnet.org
+---
 
-Bước 2: Lấy Token Testnet (Faucet)
+## 🌱 Hướng phát triển trong tương lai
 
-Truy cập Celo Sepolia Faucet: https://faucet.celo.org/sepolia
+- 🖥️ Xây dựng giao diện người dùng (frontend) bằng **React / Next.js**
+- 🔮 Tích hợp nguồn ngẫu nhiên an toàn hơn (ví dụ: **Celo Oracles**)
+- 💎 Bổ sung cơ chế P2E nâng cao (NFT, staking, bảng xếp hạng...)
 
-Dán địa chỉ ví của bạn để nhận CELO (phí gas) và USDC (để chơi).
+---
 
-Thêm USDC vào MetaMask bằng cách "Import tokens" với địa chỉ:
-0x00Be9f205322F4359076C1E9A5B532E746F60216
+## 🧠 Ghi chú cuối
+> Dự án này chỉ mang tính **demo học tập**, không dùng trong sản phẩm thương mại.  
+> Mọi đóng góp hoặc cải tiến được chào đón qua GitHub Pull Request 💪
 
-Bước 3: Compile và Deploy Contract
-
-Mở Remix IDE.
-
-Tạo file mới SimpleP2E.sol và dán code hợp đồng vào.
-
-Chuyển sang tab "Solidity Compiler":
-
-Chọn compiler phiên bản 0.8.10 (hoặc cao hơn).
-
-Nhấn "Compile SimpleP2E.sol".
-
-Chuyển sang tab "Deploy & Run Transactions":
-
-ENVIRONMENT: Chọn "Injected Provider - MetaMask". (MetaMask sẽ yêu cầu kết nối).
-
-ACCOUNT: Đảm bảo ví của bạn (mạng 11142220) được hiển thị.
-
-CONTRACT: Chọn contract SimpleP2E.
-
-Ô Deploy: Ngay bên cạnh nút "Deploy", dán địa chỉ USDC (Sepolia):
-0x00Be9f205322F4359076C1E9A5B532E746F60216
-
-Nhấn "Deploy" và xác nhận giao dịch trên MetaMask.
-
-Sau khi thành công, contract của bạn sẽ xuất hiện ở mục "Deployed Contracts".
-
-Bước 4: Tương tác với Game
-
-A. Nạp quỹ thưởng (Bắt buộc)
-
-Bạn (với tư cách là chủ contract) cần cấp phép và nạp USDC vào game.
-
-Approve (Phê duyệt):
-
-Tìm mục "Deployed Contracts", tìm IERC20 (từ file SimpleP2E.sol).
-
-Trong ô "At Address", dán địa chỉ USDC (0x00...6bF4) và nhấn nút "At Address".
-
-Giờ bạn sẽ có một instance IERC20 ở dưới. Mở nó ra.
-
-Gọi hàm approve:
-
-spender (địa chỉ P2E): Dán địa chỉ contract SimpleP2E bạn vừa deploy.
-
-amount: 10000000000000000000 (đây là 10 USDC, với 18 số 0).
-
-Nhấn "transact" và xác nhận.
-
-Fund (Nạp tiền):
-
-Quay lại instance contract SimpleP2E của bạn.
-
-Gọi hàm fundContract với _amount: 10000000000000000000
-md
-Nhấn "transact" và xác nhận.
-
-B. Chơi Game
-
-Mở instance SimpleP2E.
-
-Tìm hàm play (màu cam).
-
-Nhập số bạn đoán (ví dụ: 5) vào ô _guess.
-
-Nhấn "transact" và xác nhận giao dịch.
-
-Kiểm tra số dư USDC của bạn. Nếu thắng, bạn sẽ nhận được 1 USDC!
-
-4. Cải tiến trong tương lai
-
-Xây dựng một giao diện người dùng (frontend) đơn giản bằng React/Next.js.
-
-Tích hợp một nguồn ngẫu nhiên an toàn hơn (ví dụ: Celo Oracles).
-
-Thêm các cơ chế P2E phức tạp hơn (ví dụ: NFT, staking).
